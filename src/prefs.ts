@@ -734,6 +734,15 @@ export default class TilingShellExtensionPreferences extends ExtensionPreference
         );
         keybindingsGroup.add(wrapAroundRow);
 
+        const directionalFocusTiledWindows = this._buildSwitchRow(
+            Settings.KEY_ENABLE_DIRECTIONAL_FOCUS_TILED_ONLY,
+            _('Restrict directional focus to tiled windows'),
+            _(
+                'When using directional focus navigation, only consider tiled windows',
+            ),
+        );
+        keybindingsGroup.add(directionalFocusTiledWindows);
+
         // Import/export/reset section
         const importExportGroup = new Adw.PreferencesGroup({
             title: _('Import, export and reset'),

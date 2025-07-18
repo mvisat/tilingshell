@@ -550,10 +550,16 @@ export default class TilingShellExtension extends Extension {
         const windowList = filterUnfocusableWindows(
             focus_window.get_workspace().list_windows(),
         );
+        const onlyTiledWindows = Settings.ENABLE_DIRECTIONAL_FOCUS_TILED_ONLY;
 
         windowList
             .filter((win) => {
                 if (win === focus_window || win.minimized) return false;
+                if (
+                    onlyTiledWindows &&
+                    (win as ExtendedWindow).assignedTile === undefined
+                )
+                    return false;
 
                 const winRect = win.get_frame_rect();
                 switch (direction) {
